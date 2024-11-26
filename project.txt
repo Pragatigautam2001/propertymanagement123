@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="bg-primary text-white p-3">
+    <h1>Property Management System</h1>
+  </header>
+  <div class="container mt-4">
+    <h2>Available Properties</h2>
+    <div class="row">
+      <!-- Property Cards -->
+      <div class="col-md-4">
+        <div class="card">
+          <img src="property1.jpg" class="card-img-top" alt="Property 1">
+          <div class="card-body">
+            <h5 class="card-title">2-Bedroom Apartment</h5>
+            <p class="card-text">Location: Downtown</p>
+            <p class="card-text">Price: $1200/month</p>
+            <a href="#" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+      <!-- More Property Cards here -->
+    </div>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Listings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="bg-dark text-white p-3">
+    <h1>Property Listings</h1>
+  </header>
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Property List from Database (Dynamically Generated) -->
+    </div>
+  </div>
+</body>
+</html>
+mkdir property-management
+cd property-management
+npm init -y
+npm install express mongoose body-parser
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.use(express.json());
+
+// Simulate database with some dummy properties
+const properties = [
+  { id: 1, title: "2-Bedroom Apartment", location: "Downtown", price: 1200 },
+  { id: 2, title: "3-Bedroom House", location: "Suburbs", price: 1500 }
+];
+
+app.get('/properties', (req, res) => {
+  res.json(properties);
+});
+
+// Simple Route to render the home page
+app.get('/', (req, res) => {
+  res.send('Welcome to the Property Management System');
+});
+
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
